@@ -1,7 +1,7 @@
 from constants import *
 from player import Player
 import pygame
-from asteroid import Asteroid
+from asteroid import Asteroid, SCORE
 from asteroidfield import AsteroidField
 from shot import Shot
 import sys
@@ -32,14 +32,14 @@ def main():
 	player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
 	Shot.containers = (shots, updatable, drawable)
-	
+	SCORE = 0
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				return
 		
 		updatable.update(dt)
-		 
+		
 		
 		for asteroid in asteroids:
 			if asteroid.check_collision(player):
@@ -48,11 +48,12 @@ def main():
 		
 			for bullet in shots:
 				if bullet.check_collision(asteroid):
-					asteroid.split()
+					SCORE += asteroid.split()
 					bullet.kill()
 		
 		screen.fill("black")
-
+		display_score = font.render('Score: '+ str(SCORE), True, WHITE )
+		screen.blit(display_score,(10,10))
 		for obj in drawable:
 			obj.draw(screen)
 		

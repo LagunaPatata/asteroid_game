@@ -1,3 +1,7 @@
+import pygame
+
+pygame.init()
+
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 
@@ -11,3 +15,5 @@ PLAYER_SPEED = 200
 SHOT_RADIUS = 5
 PLAYER_SHOOT_SPEED = 500
 PLAYER_SHOOT_COOLDOWN = 0.3
+font = pygame.font.Font('freesansbold.ttf', 20)
+WHITE = (255,255,255)
